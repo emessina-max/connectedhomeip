@@ -94,9 +94,6 @@ public:
     // with that name, with different semantics.
     void Deinit();
 
-    // Sets the breadcrumb attribute in GeneralCommissioning cluster, no-op when breadcrumbValue is NullOptional.
-    void UpdateBreadcrumb(const Optional<uint64_t> & breadcrumbValue);
-
     // BaseDriver::NetworkStatusChangeCallback
     void OnNetworkingStatusChange(DeviceLayer::NetworkCommissioning::Status aCommissioningError, Optional<ByteSpan> aNetworkId,
                                   Optional<int32_t> aConnectStatus) override;
@@ -243,6 +240,9 @@ private:
     // Commits the breadcrumb value saved in mCurrentOperationBreadcrumb to the breadcrumb attribute in GeneralCommissioning
     // cluster. Will set mCurrentOperationBreadcrumb to NullOptional.
     void CommitSavedBreadcrumb();
+
+    // Sets the breadcrumb attribute in GeneralCommissioning cluster, no-op when breadcrumbValue is NullOptional.
+    void UpdateBreadcrumb(const Optional<uint64_t> & breadcrumbValue);
 
     // Actual handlers of the commands
     std::optional<DataModel::ActionReturnStatus>
